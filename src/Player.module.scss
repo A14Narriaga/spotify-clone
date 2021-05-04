@@ -1,0 +1,11 @@
+.player {
+    background-color: rgba(34, 39, 39, 0.473);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}

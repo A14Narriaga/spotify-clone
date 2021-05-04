@@ -45,6 +45,7 @@
     ]
   },
   "devDependencies": {
+    "@types/randomcolor": "^0.5.5",
     "@types/react-router-dom": "^5.1.7"
   }
 }

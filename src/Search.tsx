@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from "react"
 import Player from "./Player"
+import randomColor from "randomcolor"
+import styles from "./Search.module.scss"
 
 interface Song {
   id: string
@@ -12,12 +14,7 @@ const Search = () => {
 
   const queryRef = useRef<HTMLInputElement>(document.createElement("input"))
   const [songs, setSongs] = useState([])
-  const [currentSong, setCurrentSong] = useState<Song>({
-    id: "",
-    name: "",
-    artistName: "",
-    previewURL: ""
-  })
+  const [currentSong, setCurrentSong] = useState<Song>({} as Song)
 
   const search = async () => {
     setSongs([])
@@ -40,17 +37,20 @@ const Search = () => {
     <div className="App">
       <input ref={queryRef} />
       <button onClick={search}>Search</button>
-      {songs.map((song: Song) => (
-        <div key={song.id}>
-          <h3>{song.artistName} - {song.name}</h3>
-          <button onClick={() => setCurrentSong(song)} >▶</button>
-        </div>
-      ))}
-      <Player
+      <section className={styles.songs}>
+        {songs.map((song: Song) => (
+          <div key={song.id} style={{ backgroundColor: randomColor() }}>
+            <h3>{song.artistName} - {song.name}</h3>
+            <button onClick={() => setCurrentSong(song)}>▶</button>
+          </div>
+        ))}</section>
+      {currentSong.id && (
+        <Player
           src={currentSong.previewURL}
           artist={currentSong.artistName}
           song={currentSong.name}
         />
+      )}
     </div>
   )
 }

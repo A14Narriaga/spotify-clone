@@ -1,4 +1,5 @@
 import { useAudio } from "react-use"
+import style from "./Player.module.scss"
 
 const Player = ({ src, artist, song }:
     { src: string, artist: string, song: string }) => {
@@ -7,16 +8,19 @@ const Player = ({ src, artist, song }:
         autoPlay: true,
     });
     return (
-        <div>
+        <div className={style.player}>
             {audio}
             <h2>{artist} - {song}</h2>
-            <pre>{JSON.stringify(state, null, 2)}</pre>
-            <button onClick={controls.pause}>Pause</button>
-            <button onClick={controls.play}>Play</button>
-            <br />
-            <button onClick={() => controls.volume(.1)}>Volume: 10%</button>
-            <button onClick={() => controls.volume(.5)}>Volume: 50%</button>
-            <button onClick={() => controls.volume(1)}>Volume: 100%</button>
+            <h3>Time: {state.time}</h3>
+            <div>
+                <button onClick={state.paused ? controls.play : controls.pause}>
+                    {state.paused ? 'Play' : 'Pause'}
+                </button>
+                <br/>
+                <button onClick={() => controls.volume(.1)}>Volume: 10%</button>
+                <button onClick={() => controls.volume(.5)}>Volume: 50%</button>
+                <button onClick={() => controls.volume(1)}>Volume: 100%</button>
+            </div>
         </div>
     )
 }
