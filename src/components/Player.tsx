@@ -1,11 +1,10 @@
-import { useContext } from "react";
 import { useAudio } from "react-use"
-import { currentSongContext } from "../hooks/useSongContext";
+import { useCurrentSongContext } from "../hooks/useCurrentSongContext";
 import style from "../styles/Player.module.scss"
 
 const Player = () => {
 
-    const { currentSong: {previewURL, name, artistName} } = useContext(currentSongContext);
+    const { currentSong: {previewURL, name, artistName} } = useCurrentSongContext();
 
     const [audio, state, controls] = useAudio({
         src: previewURL,

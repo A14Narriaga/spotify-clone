@@ -1,6 +1,7 @@
 import { useState, useRef } from "react"
 import Song from "./Song"
 import _Song from "../classes/SongInt"
+import randomColor from "randomcolor"
 import styles from "../styles/Search.module.scss"
 
 const Search = () => {
@@ -17,7 +18,7 @@ const Search = () => {
     const url = baseUrl + `/v2.2/search/verbose?${key}&${query}`
     const response = await fetch(url)
     const json = await response.json()
-    setSongs(json.search.data.tracks)
+    setSongs(json.search.data.tracks.map((song: _Song) => ({...song, colorBg: randomColor()})))
     queryRef.current.value = ""
   }
 

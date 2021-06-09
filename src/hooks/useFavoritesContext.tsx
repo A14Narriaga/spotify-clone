@@ -18,7 +18,7 @@ export const FavoritesProvider = ({children} : {children: any}) => {
 
     useEffect(() => {
         localStorage.setItem("favoritos", JSON.stringify(favoriteSongs));
-      }, [favoriteSongs])
+    }, [favoriteSongs])
 
     return (
         <FavoriteContext.Provider value={{favoriteSongs, setFavoriteSongs}}>

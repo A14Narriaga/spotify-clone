@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { FavoritesProvider } from "../hooks/useFavoritesContext";
-import { SongProvider } from "../hooks/useSongContext";
+import { CurrentSongProvider } from "../hooks/useCurrentSongContext";
 import Search from "./Search";
 import Favorites from "./Favorites";
 import Player from "./Player";
@@ -10,7 +10,7 @@ const App = () => {
 
   return (
     <FavoritesProvider>
-    <SongProvider>
+    <CurrentSongProvider>
       <Router>
       <Link to="/search">Search</Link>
       <Link to="/">Home</Link>
@@ -24,7 +24,7 @@ const App = () => {
       </Switch>
     </Router>
     <Player />
-    </SongProvider>
+    </CurrentSongProvider>
     </FavoritesProvider>
   );
 };

@@ -1,13 +1,12 @@
-import { useContext, useState } from "react"
-import { currentSongContext } from "../hooks/useSongContext"
+import { useState } from "react"
 import { useFavoritesContext } from "../hooks/useFavoritesContext"
+import { useCurrentSongContext } from "../hooks/useCurrentSongContext"
 import _Song from "../classes/SongInt"
-import randomColor from "randomcolor"
 
 const Song = ({ song } : { song: _Song }) => {
 
     const [icon, setIcon] = useState("🤍")
-    const { setCurrentSong } = useContext(currentSongContext);
+    const { setCurrentSong } = useCurrentSongContext();
     const { favoriteSongs, setFavoriteSongs } = useFavoritesContext();
 
     const addToFavoriteSongs = () => {
@@ -26,7 +25,7 @@ const Song = ({ song } : { song: _Song }) => {
     }
 
     return (
-        <div key={song.id} style={{ backgroundColor: randomColor() }}>
+        <div key={song.id} style={{ backgroundColor: song.colorBg }}>
             <h3>{song.artistName} - {song.name}</h3>
             <button onClick={() => setCurrentSong(song)}>▶</button>
             <button onClick={addToFavoriteSongs}>{icon}</button>
